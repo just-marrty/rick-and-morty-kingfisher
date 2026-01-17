@@ -16,9 +16,6 @@ struct MainResultView: View {
         _resultsVM = State(initialValue: ResultsListViewModel(fetchService: FetchService()))
     }
     
-    @State private var searchText: String = ""
-    @State private var showContent: Bool = false
-    
     private let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
     private let animationDuration: Double = 0.3
     private let sleepSeconds: Double = 0.05
@@ -91,11 +88,11 @@ struct MainResultView: View {
                         ToolbarItemGroup(placement: .topBarTrailing) {
                             Button {
                                 Task {
-                                    showContent = false
+                                    resultsVM.showContent = false
                                     try? await Task.sleep(for: .seconds(sleepSeconds))
                                     await resultsVM.loadPrevPage()
                                     withAnimation(.easeInOut(duration: animationDuration)) {
-                                        showContent = true
+                                        resultsVM.showContent = true
                                     }
                                 }
                             } label: {
@@ -105,11 +102,11 @@ struct MainResultView: View {
                             
                             Button {
                                 Task {
-                                    showContent = false
+                                    resultsVM.showContent = false
                                     try? await Task.sleep(for: .seconds(sleepSeconds))
                                     await resultsVM.loadNextPage()
                                     withAnimation(.easeInOut(duration: animationDuration)) {
-                                        showContent = true
+                                        resultsVM.showContent = true
                                     }
                                 }
                             } label: {
@@ -121,11 +118,11 @@ struct MainResultView: View {
                         ToolbarItem(placement: .topBarLeading) {
                             Button {
                                 Task {
-                                    showContent = false
+                                    resultsVM.showContent = false
                                     try? await Task.sleep(for: .seconds(sleepSeconds))
                                     await resultsVM.loadResults()
                                     withAnimation(.easeInOut(duration: animationDuration)) {
-                                        showContent = true
+                                        resultsVM.showContent = true
                                     }
                                 }
                             } label: {
@@ -133,14 +130,14 @@ struct MainResultView: View {
                             }
                         }
                     }
-                    .opacity(showContent ? 1 : 0)
+                    .opacity(resultsVM.showContent ? 1 : 0)
                 }
             }
         }
         .task {
             await resultsVM.loadResults()
             withAnimation(.easeInOut(duration: animationDuration)) {
-                showContent = true
+                resultsVM.showContent = true
             }
         }
     }

@@ -15,6 +15,7 @@ class ResultsListViewModel {
     var wrapperInfo: WrapperInfoViewModel?
     var isLoading: Bool = false
     var errorMessage: String? = nil
+    var showContent: Bool = false
     
     private let fetchService: FetchService
     
