@@ -10,11 +10,7 @@ import Kingfisher
 
 struct MainResultView: View {
     
-    @State private var resultsVM: ResultsListViewModel
-    
-    init() {
-        _resultsVM = State(initialValue: ResultsListViewModel(fetchService: FetchService()))
-    }
+    @State private var resultsVM = ResultsListViewModel(fetchService: FetchService())
     
     private let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
     private let animationDuration: Double = 0.3
