@@ -14,7 +14,7 @@ enum NetworkError: Error {
     case decodingFail
 }
 
-class FetchService {
+struct FetchService {
     
     private let endpoint = "/character"
     
