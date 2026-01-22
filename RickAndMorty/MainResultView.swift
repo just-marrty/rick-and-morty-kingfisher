@@ -33,7 +33,9 @@ struct MainResultView: View {
                         .bold()
                         .padding()
                     Button {
-                        
+                        Task {
+                            await resultsVM.loadResults()
+                        }
                     } label: {
                         Image(systemName: "arrow.clockwise")
                             .font(.system(size: 20, design: .rounded))
