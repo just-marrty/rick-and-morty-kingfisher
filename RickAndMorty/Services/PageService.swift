@@ -1,16 +1,16 @@
 //
-//  FetchService.swift
+//  PageService.swift
 //  RickAndMorty
 //
-//  Created by Martin Hrbáček on 15.01.2026.
+//  Created by Martin Hrbáček on 25.01.2026.
 //
 
 import Foundation
 
-struct FetchService: FetchServiceProtocol {
+struct PageService: PageServiceProtocol {
     
-    func fetchResults() async throws -> ResultWrapper {
-        guard let url = URL(string: APIConstants.baseURL+APIConstants.endpoint) else {
+    func fetchPage(url: URL?) async throws -> ResultWrapper {
+        guard let url = url else {
             throw NetworkError.invalidURL
         }
         

@@ -1,5 +1,5 @@
 //
-//  Result.swift
+//  ResultWrapper.swift
 //  RickAndMorty
 //
 //  Created by Martin Hrbáček on 15.01.2026.

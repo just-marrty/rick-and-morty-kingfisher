@@ -10,8 +10,8 @@ import Foundation
 struct StringConstants {
     // MARK: - Error Messages
     static let errorMessageLoadResults = "There seems to be a problem on providers side."
-    static let errorMessageNextPage = "Oups, looks there is some issue.."
-    static let errorMessagePrevPage = "Oups, looks there is some issue.."
+    static let errorMessageNextPage = "Oups, it looks there is some issue.."
+    static let errorMessagePrevPage = "Oups, it looks there is some issue.."
     
     // MARK: - Error showing
     static let oups = "Oups"

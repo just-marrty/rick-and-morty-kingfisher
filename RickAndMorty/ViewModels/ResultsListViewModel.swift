@@ -17,10 +17,12 @@ class ResultsListViewModel {
     var errorMessage: String? = nil
     var showContent: Bool = false
     
-    private let fetchService: FetchService
+    private let fetchService: FetchServiceProtocol
+    private let fetchPage: PageServiceProtocol
     
-    init(fetchService: FetchService) {
+    init(fetchService: FetchServiceProtocol, fetchPage: PageServiceProtocol) {
         self.fetchService = fetchService
+        self.fetchPage = fetchPage
     }
     
     func loadResults() async {
@@ -38,13 +40,13 @@ class ResultsListViewModel {
     }
     
     func loadNextPage() async {
-        guard let nextURL = wrapperInfo?.next else { return }
+        guard let nextURL = wrapperInfo?.next, !isLoading else { return }
         
         isLoading = true
         errorMessage = nil
         
         do {
-            let wrapper = try await fetchService.fetchPage(url: nextURL)
+            let wrapper = try await fetchPage.fetchPage(url: nextURL)
             self.results = wrapper.results.map(ResultsViewModel.init)
             self.wrapperInfo = WrapperInfoViewModel(wrapperInfo: wrapper.info)
         } catch {
@@ -54,13 +56,13 @@ class ResultsListViewModel {
     }
     
     func loadPrevPage() async {
-        guard let prevURL = wrapperInfo?.prev else { return }
+        guard let prevURL = wrapperInfo?.prev, !isLoading else { return }
         
         isLoading = true
         errorMessage = nil
         
         do {
-            let wrapper = try await fetchService.fetchPage(url: prevURL)
+            let wrapper = try await fetchPage.fetchPage(url: prevURL)
             self.results = wrapper.results.map(ResultsViewModel.init)
             self.wrapperInfo = WrapperInfoViewModel(wrapperInfo: wrapper.info)
         } catch {
