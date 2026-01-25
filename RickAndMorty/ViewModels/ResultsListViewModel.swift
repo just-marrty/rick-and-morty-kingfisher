@@ -32,7 +32,7 @@ class ResultsListViewModel {
             self.results = wrapper.results.map(ResultsViewModel.init)
             self.wrapperInfo = WrapperInfoViewModel(wrapperInfo: wrapper.info)
         } catch {
-            errorMessage = "There seems to be a problem on the provider's side..."
+            errorMessage = StringConstants.errorMessageLoadResults
         }
         isLoading = false
     }
@@ -48,7 +48,7 @@ class ResultsListViewModel {
             self.results = wrapper.results.map(ResultsViewModel.init)
             self.wrapperInfo = WrapperInfoViewModel(wrapperInfo: wrapper.info)
         } catch {
-            errorMessage = "Oups, looks there is some issue.."
+            errorMessage = StringConstants.errorMessageNextPage
         }
         isLoading = false
     }
@@ -64,7 +64,7 @@ class ResultsListViewModel {
             self.results = wrapper.results.map(ResultsViewModel.init)
             self.wrapperInfo = WrapperInfoViewModel(wrapperInfo: wrapper.info)
         } catch {
-            errorMessage = "Oups, looks there is some issue.."
+            errorMessage = StringConstants.errorMessagePrevPage
         }
         isLoading = false
     }
@@ -95,7 +95,7 @@ struct ResultsViewModel: Identifiable, Hashable {
     }
     
     var type: String? {
-        result.type ?? "No type"
+        result.type ?? StringConstants.noType
     }
     
     var gender: String {

@@ -25,28 +25,28 @@ struct ResultDetialView: View {
                 
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
-                        Text("Status:")
+                        Text(StringConstants.status)
                             .font(.system(size: 18, design: .rounded))
                             .bold()
                         Text(result.status)
                     }
                     
                     HStack {
-                        Text("Species:")
+                        Text(StringConstants.species)
                             .font(.system(size: 18, design: .rounded))
                             .bold()
                         Text(result.species)
                     }
                     
                     HStack {
-                        Text("Type:")
+                        Text(StringConstants.type)
                             .font(.system(size: 18, design: .rounded))
                             .bold()
-                        Text(result.type ?? "N/A")
+                        Text(result.type ?? StringConstants.notAvailable)
                     }
                     
                     HStack {
-                        Text("Gender:")
+                        Text(StringConstants.gender)
                             .font(.system(size: 18, design: .rounded))
                             .bold()
                         Text(result.gender)
