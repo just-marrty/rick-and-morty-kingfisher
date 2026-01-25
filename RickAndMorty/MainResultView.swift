@@ -10,7 +10,12 @@ import Kingfisher
 
 struct MainResultView: View {
     
-    @State private var resultsVM = ResultsListViewModel(fetchService: FetchService())
+    @State private var resultsVM: ResultsListViewModel
+    
+    init(fetchService: FetchServiceProtocol = FetchService(),
+         fetchPage: PageServiceProtocol = PageService()) {
+        _resultsVM = State(wrappedValue: ResultsListViewModel(fetchService: fetchService, fetchPage: fetchPage))
+    }
     
     private let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
     private let animationDuration: Double = 0.3
@@ -142,5 +147,46 @@ struct MainResultView: View {
 
 #Preview {
     MainResultView()
+        .preferredColorScheme(.dark)
+}
+
+#Preview("Mock Data") {
+    struct MockService: FetchServiceProtocol {
+        func fetchResults() async throws -> ResultWrapper {
+            return ResultWrapper(info: ResultWrapper.WrapperInfo(next: nil, prev: nil), results: [
+                ResultWrapper.Results(
+                    id: 361,
+                    name: "Toxic Rick",
+                    status: "Dead",
+                    species: "Humanoid",
+                    type: "Rick's Toxic Side",
+                    gender: "Male",
+                    image: "https://rickandmortyapi.com/api/character/avatar/361.jpeg"
+                )
+            ]
+            )
+        }
+    }
+    return MainResultView(fetchService: MockService())
+        .preferredColorScheme(.dark)
+}
+
+#Preview("Fetch Results: Status Code Error") {
+    struct ErrorService: FetchServiceProtocol {
+        func fetchResults() async throws -> ResultWrapper {
+            throw NetworkError.httpFail(404)
+        }
+    }
+    return MainResultView(fetchService: ErrorService())
+        .preferredColorScheme(.dark)
+}
+
+#Preview("Fetch Page: Status Code Error") {
+    struct ErrorService: PageServiceProtocol {
+        func fetchPage(url: URL?) async throws -> ResultWrapper {
+            throw NetworkError.httpFail(404)
+        }
+    }
+    return MainResultView(fetchPage: ErrorService())
         .preferredColorScheme(.dark)
 }
