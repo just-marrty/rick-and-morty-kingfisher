@@ -10,7 +10,7 @@ import Foundation
 struct FetchService: FetchServiceProtocol {
     
     func fetchResults() async throws -> ResultWrapper {
-        guard let url = URL(string: APIConstants.baseURL+APIConstants.endpoint) else {
+        guard let url = URL(string: API.baseURL+API.Endpoints.charcater) else {
             throw NetworkError.invalidURL
         }
         

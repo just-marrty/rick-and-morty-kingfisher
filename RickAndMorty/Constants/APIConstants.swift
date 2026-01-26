@@ -7,7 +7,10 @@
 
 import Foundation
 
-struct APIConstants {
+enum API {
     static let baseURL = "https://rickandmortyapi.com/api"
-    static let endpoint = "/character"
+    
+    enum Endpoints {
+        static let charcater = "/character"
+    }
 }

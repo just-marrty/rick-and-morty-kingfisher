@@ -25,11 +25,11 @@ struct MainResultView: View {
         VStack {
             if let errorMessage = resultsVM.errorMessage {
                 VStack {
-                    Image(systemName: StringConstants.exclamationMarkTriangle)
+                    Image(systemName: Strings.exclamationMarkTriangle)
                         .foregroundStyle(.orange)
                         .bold()
                         .font(.system(size: 28, design: .rounded))
-                    Text(StringConstants.oups)
+                    Text(Strings.oups)
                         .font(.system(size: 26, design: .rounded))
                         .bold()
                         .padding()
@@ -42,7 +42,7 @@ struct MainResultView: View {
                             await resultsVM.loadResults()
                         }
                     } label: {
-                        Image(systemName: StringConstants.arrowClockwise)
+                        Image(systemName: Strings.arrowClockwise)
                             .font(.system(size: 20, design: .rounded))
                             .bold()
                             .padding()
@@ -84,8 +84,8 @@ struct MainResultView: View {
                     .navigationDestination(for: ResultsViewModel.self) { result in
                         ResultDetialView(result: result)
                     }
-                    .navigationTitle(StringConstants.navigationTitle)
-                    .navigationSubtitle(StringConstants.navigationSubtitle)
+                    .navigationTitle(Strings.navigationTitle)
+                    .navigationSubtitle(Strings.navigationSubtitle)
                     .toolbar {
                         ToolbarItemGroup(placement: .topBarTrailing) {
                             Button {
@@ -98,7 +98,7 @@ struct MainResultView: View {
                                     }
                                 }
                             } label: {
-                                Image(systemName: StringConstants.chevronLeft)
+                                Image(systemName: Strings.chevronLeft)
                             }
                             .disabled(resultsVM.wrapperInfo?.prev == nil)
                             
@@ -112,7 +112,7 @@ struct MainResultView: View {
                                     }
                                 }
                             } label: {
-                                Image(systemName: StringConstants.chevronRight)
+                                Image(systemName: Strings.chevronRight)
                             }
                             .disabled(resultsVM.wrapperInfo?.next == nil)
                         }
@@ -128,7 +128,7 @@ struct MainResultView: View {
                                     }
                                 }
                             } label: {
-                                Image(systemName: StringConstants.arrowClockwise)
+                                Image(systemName: Strings.arrowClockwise)
                             }
                         }
                     }

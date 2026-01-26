@@ -1,5 +1,5 @@
 //
-//  StringConstants.swift
+//  Strings.swift
 //  RickAndMorty
 //
 //  Created by Martin Hrbáček on 25.01.2026.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StringConstants {
+struct Strings {
     // MARK: - Error Messages
     static let errorMessageLoadResults = "There seems to be a problem on providers side."
     static let errorMessageNextPage = "Oups, it looks there is some issue.."
